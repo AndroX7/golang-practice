@@ -1,7 +1,14 @@
 package main
 
-import "fmt"
+import (
+      "fmt"
+      "strings"
+      "math/rand"
+      "time"
+      "math"
+)
 
+// line 4 - 8 shows how to include library. just like require on node.js
 func main() {
 //   kata := 10
 //   if kata == 10 {
@@ -112,5 +119,51 @@ func main() {
   // var newFruits = fruits[0:4]
   //
   // fmt.Println(newFruits) // ["apple", "grape"]
+  // dst := make([]string, 3)
+  // src := []string{"watermelon", "pinnaple", "apple", "orange"}
+  // n := copy(dst, src)
+  //
+  // fmt.Println(dst) // watermelon pinnaple apple
+  // fmt.Println(src) // watermelon pinnaple apple orange
+  // fmt.Println(n)   // 3
+  // var chicken map[string]int
+  // chicken = map[string]int{}
+  //
+  // chicken["januari"] = 50
+  // chicken["februari"] = 40
+  //
+  // fmt.Println("januari", chicken["januari"]) // januari 50
+  // fmt.Println("mei",     chicken["mei"])     // mei 0
+    var names = []string{"John", "Wick"}
+    printMessage("halo", names)
+    rand.Seed(time.Now().Unix()) // untuk memastikan angka yang keluar benar" bernilai randoom apa tidak
+    var randomValue int
 
+    randomValue = randomWithRange(2, 10)
+    fmt.Println("random number:", randomValue)
+    randomValue = randomWithRange(2, 10)
+    fmt.Println("random number:", randomValue)
+    randomValue = randomWithRange(2, 10)
+    fmt.Println("random number:", randomValue)
+
+    var diameter float64 = 15
+    var area, circumference = calculate(diameter)
+    fmt.Printf("luas lingkaran\t\t: %.2f \n", area)
+    fmt.Printf("keliling lingkaran\t: %.2f \n", circumference)
+}
+func printMessage(message string, arr []string) {
+  var nameString = strings.Join(arr, " ") // Join array = Join.(<nama Variabel>, <join with>) in this case they separate array with whitespace
+  fmt.Println(message, nameString)
+}
+func randomWithRange(min, max int) int {
+    var value = rand.Int() % (max - min + 1) + min
+    return value
+}
+func calculate(d float64) (float64, float64) {
+    // hitung luas
+    var area = math.Pi * math.Pow(d / 2, 2)
+    // hitung keliling
+    var circumference = math.Pi * d
+    // kembalikan 2 nilai
+    return area, circumference
 }
